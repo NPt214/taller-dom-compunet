@@ -14,7 +14,7 @@
 function inicializarServidor() {
   // ERROR 1: Asignación a variable no declarada (lanza ReferenceError en modo estricto)
   // TODO: Corrige declarándola con let o const
-  maxConexiones = 1000;
+  const maxConexiones = 1000;
 
   // Objeto inmutable protegido contra escritura
   const config = Object.freeze({
@@ -24,7 +24,8 @@ function inicializarServidor() {
 
   // ERROR 2: Mutación directa de un objeto congelado (lanza TypeError en "use strict")
   // TODO: En lugar de mutar config.puerto, crea un nuevo objeto derivado: { ...config, puerto: 9090 }
-  config.puerto = 9090;
+  
+  const configActualizada = { ...config, puerto: 9090 };
 
   return {
     puerto: config.puerto,

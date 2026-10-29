@@ -25,16 +25,24 @@ function createSafeServiceCard(service) {
   // const title = document.createElement("h3");
   // title.textContent = service.name;
 
+  const title = document.createElement("h3");
+  title.textContent = service.name;
+
   // 4. Detalle métrico <p class="metric-text">
   // TODO: Crea el elemento <p>, asígnale la clase 'metric-text' y su texto
   // const details = document.createElement("p");
   // details.className = "metric-text";
   // details.textContent = `Latencia: ${service.latency} ms | Versión: ${service.version}`;
+  const details = document.createElement("p");
+  details.className = "metric-text";
+  details.textContent = 'latencia: ${service.latency} ms | Versión: ${service.version}';
+
+
+
 
   // 5. Ensamblar todos los nodos en la tarjeta
   // TODO: Usa card.append(badge, title, details) para ensamblar los nodos creados
-  card.append(badge);
-
+  card.append(badge, title, details);
   return card;
 }
 

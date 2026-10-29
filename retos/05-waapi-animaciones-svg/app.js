@@ -20,15 +20,20 @@ function animateGauge(circleEl, percentage) {
   // TODO 1: Calcular el desfase objetivo (targetOffset)
   // Fórmula perimétrica: PERIMETRO - (PERIMETRO * percentage) / 100
   // const targetOffset = ...;
-
+  const targetOffset = PERIMETRO - (PERIMETRO * percentage) / 100;
   // TODO 2: Leer el offset previo guardado en dataset (o PERIMETRO si es el inicio)
   // const currentOffset = parseFloat(circleEl.dataset.offset || PERIMETRO);
-
+  const currentOffset = parseFloat(circleEl.dataset.offset || PERIMETRO);
   // TODO 3: Ejecutar la Web Animations API nativa (GPU Composited)
   // Usa circleEl.animate([{ strokeDashoffset: currentOffset }, { strokeDashoffset: targetOffset }], { duration: 550, easing: "cubic-bezier(0.4, 0, 0.2, 1)", fill: "forwards" });
+  circleEl.animate([{ strokeDashoffset: currentOffset }, { strokeDashoffset: targetOffset }], { duration: 550, easing: "cubic-bezier(0.4, 0, 0.2, 1)", fill: "forwards" });
 
   // TODO 4: Guardar circleEl.dataset.offset = targetOffset y actualizar los textos valueLabel y sliderTxt
+  circleEl.dataset.offset = targetOffset;
+  valueLabel.textContent = `${percentage}%`;
+  sliderTxt.textContent = `${percentage}%`;
 }
+
 
 if (slider) {
   slider.addEventListener("input", (e) => {

@@ -24,12 +24,21 @@ async function checkHealth(endpoint, simulateError = false) {
 
     // TODO 1: Espera la resolución de mockPing(endpoint, simulateError) usando 'await'
     // const result = await ...;
+    const result = await mockPing(endpoint, simulateError);
+    if (result === FULFILLED){
+      healthBox.className = "health-display success";
+      healthBox.textContent = `✅ 200 OK | Latencia: ${result.latencyMs} ms | Hora: ${result.timestamp}`;
 
+    }
     // TODO 2: Estado FULFILLED: Si la promesa resuelve con éxito, asigna a healthBox:
     // healthBox.className = "health-display success";
     // healthBox.textContent = `✅ 200 OK | Latencia: ${result.latencyMs} ms | Hora: ${result.timestamp}`;
 
   } catch (error) {
+    if (result === REJECTED){
+      healthBox.className = "health-display error";
+      healthBox.textContent = `❌ Fallo de red: ${error.message}`;
+    }
     // TODO 3: Estado REJECTED: Si la promesa falla, captura el error y asigna a healthBox:
     // healthBox.className = "health-display error";
     // healthBox.textContent = `❌ Fallo de red: ${error.message}`;

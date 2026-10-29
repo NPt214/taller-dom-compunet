@@ -40,12 +40,17 @@ function createMetricCard({ title, count, unit, onIncrement, onReset }) {
   incBtn.className = "btn btn-primary";
   incBtn.textContent = "+ Subir";
   // TODO: Registra el addEventListener para invocar onIncrement() al hacer clic
-
+  incBtn.addEventListener("click", () => {
+    if (typeof onIncrement === "function") onIncrement();
+  });
   // Botón 2: Reiniciar
   const resetBtn = document.createElement("button");
   resetBtn.className = "btn btn-secondary";
   resetBtn.textContent = "Reset";
   // TODO: Registra el addEventListener para invocar onReset() al hacer clic
+  resetBtn.addEventListener("click", () => {
+    if (typeof onIncrement === "function") onIncrement();
+  });
 
   btnGroup.append(incBtn, resetBtn);
   card.append(titleEl, valueEl, btnGroup);

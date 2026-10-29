@@ -18,7 +18,19 @@ if (servicesList) {
     const action = actionButton.dataset.action;
 
     console.log(`🎯 Delegación capturada: acción="${action}" en id="${serviceId}"`);
+    if (actionButton.dataset.action === "toggle"){ 
+      row.classList.toggle("paused");
+      const isPaused = row.classList.contains("paused");
+      const badge = row.querySelector(".badge-state");
+      if (badge){
+        badge.className = isPaused ? "badge-state offline" : "badge-state online";
+        badge.textContent = isPaused ? "PAUSADO" : "ONLINE";
+      }
+    if (actionButton.dataset.action === "remove"){
+      row.remove();
+    }
 
+    }
     // TODO: Maneja las acciones según actionButton.dataset.action:
     // - Si action === "toggle": alterna la clase "paused" en row (row.classList.toggle("paused")),
     //   actualiza el badge .badge-state a "PAUSADO" (offline) o "ONLINE" (online), y el texto del botón a "Reanudar"/"Pausar".
